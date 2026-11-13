@@ -1,22 +1,12 @@
-
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Mon portfolio</title>
-</head>
-<body>
-    <h1>Bienvenue sur mon portfolio !</h1>
-    <p> mon premier site web raw ela tir.</p>
-</body>
-</html>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0b1220">
-  <meta name="description" content="Portfolio personnel — parcours, compétences, expériences et projets.">
-  <title>Mon portfolio | Skander</title>
+  <meta name="description" content="Portfolio de Skander, étudiant en physique à l’USTHB : parcours, compétences et projets.">
+  <title>Skander | Portfolio</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%2367e8c1'/><text x='50' y='68' font-size='56' font-weight='800' text-anchor='middle' fill='%23071711' font-family='sans-serif'>S</text></svg>">
   <style>
     :root {
       --bg: #0b1220;
@@ -41,6 +31,7 @@
       line-height: 1.65;
     }
     a { color: inherit; text-decoration: none; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
     .container { width: min(1100px, calc(100% - 40px)); margin: auto; }
     header {
       position: sticky; top: 0; z-index: 10; backdrop-filter: blur(18px);
@@ -52,7 +43,7 @@
     nav { display: flex; gap: 25px; align-items: center; }
     nav a { color: var(--muted); font-size: .92rem; transition: color .2s; }
     nav a:hover { color: var(--accent); }
-    .menu-btn { display: none; border: 1px solid var(--line); color: var(--text); background: var(--panel); border-radius: 10px; padding: 8px 12px; }
+    .menu-btn { display: none; border: 1px solid var(--line); color: var(--text); background: var(--panel); border-radius: 10px; padding: 10px 14px; font: inherit; cursor: pointer; }
     .hero { padding: 104px 0 82px; display: grid; grid-template-columns: 1.35fr .8fr; gap: 54px; align-items: center; }
     .eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: .16em; font-size: .76rem; font-weight: 800; }
     h1 { font-size: clamp(2.8rem, 7vw, 5.5rem); line-height: 1.02; letter-spacing: -.065em; margin: 18px 0 22px; }
@@ -72,12 +63,13 @@
     .fact { padding: 13px; border-radius: 14px; background: rgba(255,255,255,.045); }
     .fact strong { display: block; color: var(--accent); font-size: .95rem; }
     .fact small { color: var(--muted); }
-    section { padding: 76px 0; }
+    section { padding: 76px 0; scroll-margin-top: 76px; }
     .section-head { margin-bottom: 30px; }
     .section-head h2 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.05em; margin: 7px 0; }
     .section-head p { color: var(--muted); margin: 0; max-width: 650px; }
     .about-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 22px; }
     .card { background: rgba(17,28,46,.78); border: 1px solid var(--line); border-radius: var(--radius); padding: 25px; }
+    .card h3 { margin-top: 0; }
     .card p { color: var(--muted); margin-bottom: 0; }
     .chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 17px; }
     .chip { color: #cbd8e9; background: rgba(122,167,255,.10); border: 1px solid rgba(122,167,255,.18); border-radius: 999px; padding: 6px 11px; font-size: .84rem; }
@@ -89,17 +81,20 @@
     .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .skill-card h3 { margin: 0 0 8px; }
     .skill-card p { margin: 0; color: var(--muted); font-size: .94rem; }
+    .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .project-placeholder { border: 1px dashed rgba(103,232,193,.35); background: rgba(103,232,193,.045); }
     .project-placeholder .tag { color: var(--accent); font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .12em; }
     .contact { display: flex; align-items: center; justify-content: space-between; gap: 30px; background: linear-gradient(120deg, rgba(103,232,193,.12), rgba(122,167,255,.10)); border: 1px solid var(--line); border-radius: 28px; padding: 34px; }
     .contact h2 { margin: 0 0 7px; font-size: 2rem; letter-spacing: -.04em; }
     .contact p { color: var(--muted); margin: 0; }
+    .contact .actions { margin: 0; flex-shrink: 0; }
     footer { border-top: 1px solid var(--line); padding: 25px 0; color: var(--muted); font-size: .88rem; }
     footer .container { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
     @media (max-width: 780px) {
-      .hero, .about-grid { grid-template-columns: 1fr; }
+      .hero, .about-grid, .projects { grid-template-columns: 1fr; }
       .hero { padding-top: 70px; gap: 35px; }
       .skills { grid-template-columns: 1fr 1fr; }
+      .contact { flex-direction: column; align-items: flex-start; }
       nav { display: none; position: absolute; top: 76px; left: 0; right: 0; padding: 18px 22px; background: #0e192a; border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; }
       nav.open { display: flex; }
       .menu-btn { display: inline-block; }
@@ -109,8 +104,11 @@
       section { padding: 58px 0; }
       .skills { grid-template-columns: 1fr; }
       .timeline-item { grid-template-columns: 1fr; gap: 5px; }
-      .contact { align-items: flex-start; flex-direction: column; padding: 25px; }
-      .quick-facts { grid-template-columns: 1fr 1fr; }
+      .contact { padding: 25px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn { transition: none; }
     }
   </style>
 </head>
@@ -125,7 +123,7 @@
         <a href="#projets">Projets</a>
         <a href="#contact">Contact</a>
       </nav>
-      <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu" aria-expanded="false">Menu ☰</button>
+      <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navigation">Menu ☰</button>
     </div>
   </header>
 
@@ -133,8 +131,8 @@
     <div class="container hero" id="accueil">
       <div>
         <div class="eyebrow">Portfolio personnel</div>
-        <h1>Bonjour, moi c’est <span>Skander.</span></h1>
-        <p class="lead">Étudiant en physique, curieux des domaines de la mécanique, de l’automatisme et des technologies. J’aime apprendre, comprendre comment les choses fonctionnent et transformer les idées en projets concrets.</p>
+        <h1>Salut, moi c’est <span>Skander.</span></h1>
+        <p class="lead">Étudiant en physique à l’USTHB. La mécanique, l’automatisme et les technologies me passionnent, et j’aime comprendre comment les choses fonctionnent avant de les construire.</p>
         <div class="actions">
           <a class="btn primary" href="#projets">Découvrir mes projets</a>
           <a class="btn secondary" href="#contact">Me contacter</a>
@@ -158,12 +156,12 @@
         <div class="section-head">
           <div class="eyebrow">Qui suis-je ?</div>
           <h2>À propos de moi</h2>
-          <p>Un aperçu de mon profil, de mes intérêts et de ce qui me motive.</p>
+          <p>Mon profil, mes centres d’intérêt et ce qui me motive.</p>
         </div>
         <div class="about-grid">
           <article class="card">
             <h3>Mon profil</h3>
-            <p>Je suis étudiant à l’Université des Sciences et de la Technologie Houari-Boumediene (USTHB). Mon parcours en sciences de la matière me permet de développer une base scientifique solide. Je souhaite continuer à progresser et explorer des domaines appliqués, notamment la mécanique, l’automatisme et les procédés industriels.</p>
+            <p>Je suis étudiant en physique à l’Université des Sciences et de la Technologie Houari-Boumediene (USTHB). Après un bac en mathématiques techniques, j’ai gardé le goût du concret : comprendre un système, trouver ce qui bloque, puis le faire marcher. Je veux maintenant m’orienter vers des domaines appliqués comme la mécanique, l’automatisme et les procédés industriels.</p>
           </article>
           <article class="card">
             <h3>Ce qui m’intéresse</h3>
@@ -181,20 +179,20 @@
         <div class="section-head">
           <div class="eyebrow">Mon expérience</div>
           <h2>Parcours & expériences</h2>
-          <p>Formation et expériences professionnelles.</p>
+          <p>Ma formation et mes expériences professionnelles.</p>
         </div>
         <div class="timeline">
           <article class="timeline-item">
             <div class="date">2025 – Aujourd’hui</div>
-            <div><h3>Université USTHB — Sciences de la matière / Physique</h3><p>Parcours universitaire en sciences fondamentales, avec un intérêt particulier pour les applications techniques et industrielles. <em>Intitulé et année à confirmer.</em></p></div>
+            <div><h3>USTHB — Sciences de la matière / Physique</h3><p>Parcours universitaire en sciences fondamentales, avec un intérêt particulier pour les applications techniques et industrielles.</p></div>
           </article>
           <article class="timeline-item">
             <div class="date">Juin – Août 2026</div>
-            <div><h3>Barista / Serveur — Jardina, Hydra</h3><p>Accueil des clients, prise de commandes, service en salle et préparation de boissons. Développement du sens du service, de la communication et du travail en équipe.</p></div>
+            <div><h3>Barista / Serveur — Jardina, Hydra</h3><p>Accueil des clients, prise de commandes, service en salle et préparation de boissons. J’y ai développé le sens du service, la communication et le travail en équipe.</p></div>
           </article>
           <article class="timeline-item">
             <div class="date">Lycée</div>
-            <div><h3>Formation en filière technique</h3><p>Baccalauréat en mathématiques techniques et premières bases en génie mécanique. <em>Établissement et dates à compléter.</em></p></div>
+            <div><h3>Bac en mathématiques techniques</h3><p>Filière technique avec une première approche du génie mécanique.</p></div>
           </article>
         </div>
       </div>
@@ -205,15 +203,15 @@
         <div class="section-head">
           <div class="eyebrow">Mon savoir-faire</div>
           <h2>Compétences</h2>
-          <p>Des compétences à enrichir au fil de mes études et de mes expériences.</p>
+          <p>Ce que je maîtrise déjà et ce que je continue d’apprendre.</p>
         </div>
         <div class="skills">
-          <article class="card skill-card"><h3>Scientifiques</h3><p>Bases en physique, mathématiques et sciences de la matière.</p></article>
-          <article class="card skill-card"><h3>Techniques</h3><p>Intérêt et premières connaissances en mécanique et automatisme.</p></article>
-          <article class="card skill-card"><h3>Relationnelles</h3><p>Accueil, communication, service client et travail en équipe.</p></article>
-          <article class="card skill-card"><h3>Organisation</h3><p>Adaptabilité, sérieux et volonté d’apprendre.</p></article>
-          <article class="card skill-card"><h3>Français</h3><p>Bon niveau de communication.</p></article>
-          <article class="card skill-card"><h3>Anglais</h3><p>Niveau intermédiaire — à préciser.</p></article>
+          <article class="card skill-card"><h3>Sciences</h3><p>Physique, mathématiques et bases en sciences de la matière.</p></article>
+          <article class="card skill-card"><h3>Technique</h3><p>Premières bases en mécanique et en automatisme.</p></article>
+          <article class="card skill-card"><h3>Outils</h3><p>Git, GitHub, Visual Studio Code. Word et Python en progression.</p></article>
+          <article class="card skill-card"><h3>Relationnel</h3><p>Accueil, communication, service client et travail en équipe.</p></article>
+          <article class="card skill-card"><h3>Langues</h3><p>Arabe, français (courant), anglais (intermédiaire).</p></article>
+          <article class="card skill-card"><h3>Organisation</h3><p>Adaptabilité, sérieux et envie d’apprendre.</p></article>
         </div>
       </div>
     </section>
@@ -223,13 +221,23 @@
         <div class="section-head">
           <div class="eyebrow">Ce que je construis</div>
           <h2>Projets</h2>
-          <p>Cette section accueillera tes travaux universitaires, projets techniques et réalisations personnelles.</p>
+          <p>Mes réalisations, des plus petites aux plus techniques.</p>
         </div>
-        <article class="card project-placeholder">
-          <div class="tag">À compléter ensemble</div>
-          <h3>Mes premiers projets</h3>
-          <p>Ajoute ici une expérience pratique, un mini-projet en mécanique, un montage, un programme ou un travail réalisé à l’université. Même un petit projet mérite d’être présenté clairement.</p>
-        </article>
+        <div class="projects">
+          <article class="card">
+            <h3>Ce portfolio</h3>
+            <p>Mon premier site web, écrit en HTML, CSS et JavaScript, versionné avec Git et publié sur GitHub Pages. Je l’améliore au fil de mes apprentissages.</p>
+            <div class="chips">
+              <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">GitHub Pages</span>
+            </div>
+          </article>
+          <!-- Quand tu as un nouveau projet, copie ce bloc et remplace le texte -->
+          <article class="card project-placeholder">
+            <div class="tag">Bientôt</div>
+            <h3>Prochain projet</h3>
+            <p>Un mini-projet en mécanique, en automatisme ou en programmation arrive ici.</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -239,33 +247,38 @@
           <div>
             <div class="eyebrow">Restons en contact</div>
             <h2>Un projet ou une opportunité ?</h2>
-            <p>Tu peux me contacter pour échanger ou collaborer.</p>
+            <p>Écris-moi pour échanger ou collaborer.</p>
           </div>
-          <a class="btn primary" href="mailto:ton.email@example.com">M’écrire un e-mail</a>
+          <div class="actions">
+            <!-- IMPORTANT : remplace ton.email@example.com par ton vrai email -->
+            <a class="btn primary" href="mailto:debabiskander47@gmail.com">M’écrire un e-mail</a>
+            <a class="btn secondary" href="https://github.com/skanderdeb" target="_blank" rel="noopener">Mon GitHub</a>
+          </div>
         </div>
+      
       </div>
     </section>
   </main>
 
   <footer>
     <div class="container">
-      <span>© <span id="year"></span> Skander — Portfolio personnel</span>
+      <span>© <span id="year">2026</span> Skander — Portfolio personnel</span>
       <span>Conçu avec HTML, CSS & JavaScript</span>
     </div>
   </footer>
   <script>
     const menuBtn = document.getElementById('menuBtn');
     const navigation = document.getElementById('navigation');
+    function closeMenu() {
+      navigation.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
     menuBtn.addEventListener('click', () => {
       const isOpen = navigation.classList.toggle('open');
       menuBtn.setAttribute('aria-expanded', String(isOpen));
     });
-    navigation.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navigation.classList.remove('open');
-        menuBtn.setAttribute('aria-expanded', 'false');
-      });
-    });
+    navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
